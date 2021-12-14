@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/food-order-app-backend-DB</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="Food-Order-Application-DB@localhost" uuid="20efa64c-368b-40d3-82ce-efcfdfde2b15">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/Food-Order-Application-DB</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

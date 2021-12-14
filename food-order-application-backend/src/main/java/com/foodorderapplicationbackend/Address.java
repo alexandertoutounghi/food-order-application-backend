@@ -1,11 +1,19 @@
 package com.foodorderapplicationbackend;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+
+@Entity(name="Address")
+@IdClass(AddressId.class)
 public class Address {
     private String Country;
     private String city;
     private String streetAddress;
     private String addressNumber;
+    @Id
     private String apptNumber;
+    @Id
     private String postalCode;
 
     public Address() {

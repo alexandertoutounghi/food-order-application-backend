@@ -1,4 +1,4 @@
 package com.foodorderapplicationbackend.User;
 
-public class Admin extends User {
+public class Admin extends EndUser {
 }
