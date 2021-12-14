@@ -2,43 +2,68 @@ package com.foodorderapplicationbackend.Meal;
 
 import org.springframework.stereotype.Controller;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 @Controller
+@Entity(name="Meal")
+@Table(name="Meal")
 public class Meal {
-    private long id;
+    @Id
+    private Long mealId;
+    @SequenceGenerator(
+            name="meal-sequence-unique",
+            sequenceName = "end-user-sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "end-user-sequence"
+    )
+    @Column(
+            name="mealId",
+            updatable = false
+    )
     private double cost;
+    @Column(
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String title;
+    @Column(
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String details;
 
     public Meal() {
     }
 
-    public Meal(long id, double cost, String title, String details) {
-        this.id = id;
+    public Meal(Long mealId, double cost, String title, String details) {
+        this.mealId = mealId;
         this.cost = cost;
         this.title = title;
         this.details = details;
     }
 
-    public Meal(float cost, String title, String details) {
+    public Meal(double cost, String title, String details) {
         this.cost = cost;
         this.title = title;
         this.details = details;
     }
 
-    public long getId() {
-        return id;
+    public Long getMealId() {
+        return mealId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setMealId(Long mealId) {
+        this.mealId = mealId;
     }
 
     public double getCost() {
         return cost;
     }
 
-    public void setCost(float cost) {
+    public void setCost(double cost) {
         this.cost = cost;
     }
 
@@ -61,7 +86,7 @@ public class Meal {
     @Override
     public String toString() {
         return "Meal{" +
-                "id=" + id +
+                "id=" + mealId +
                 ", cost=" + cost +
                 ", title='" + title + '\'' +
                 ", details='" + details + '\'' +

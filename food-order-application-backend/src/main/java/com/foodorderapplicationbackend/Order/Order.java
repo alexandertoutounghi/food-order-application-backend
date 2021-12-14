@@ -1,21 +1,52 @@
 package com.foodorderapplicationbackend.Order;
 
+import com.foodorderapplicationbackend.Meal.Meal;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity(name = "Order")
+@Table
 public class Order {
-    private long id;
+    @Id
+    @Column (
+            name = "orderId",
+            updatable = false,
+            nullable = false
+    )
+    private long orderId;
+    @Column(
+            name = "timeStamp",
+            updatable = true,
+            nullable = false,
+            insertable = false
+    )
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate timestamp;
-    private float cost;
+
+    @Column (
+            name="cost",
+            updatable = true,
+            nullable = false
+    )
+    private Long cost;
+    @Column (
+            name="customerName",
+            updatable = true,
+            columnDefinition = "TEXT"
+    )
     private String customerName;
-    private List<String> details;
+    @OneToMany
+    private List<Meal> details;
+
     private OrderStatus status;
 
     public Order() {
     }
 
-    public Order(long id, LocalDate timestamp, float cost, String customerName, List<String> details, OrderStatus status) {
-        this.id = id;
+    public Order(long orderId, LocalDate timestamp, Long cost, String customerName, List<Meal> details, OrderStatus status) {
+        this.orderId = orderId;
         this.timestamp = timestamp;
         this.cost = cost;
         this.customerName = customerName;
@@ -23,48 +54,55 @@ public class Order {
         this.status = status;
     }
 
-    public long getId() {
-        return id;
+    public Order(Long cost, String customerName, OrderStatus status) {
+        this.cost = cost;
+        this.customerName = customerName;
+        this.status = status;
+    }
+
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 
     public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public float getCost() {
+    public void setTimestamp(LocalDate timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Long getCost() {
         return cost;
+    }
+
+    public void setCost(Long cost) {
+        this.cost = cost;
     }
 
     public String getCustomerName() {
         return customerName;
     }
 
-    public List<String> getDetails() {
-        return details;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setTimestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
-
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
-    public void setDetails(List<String> details) {
+    public List<Meal> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<Meal> details) {
         this.details = details;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
     }
 
     public void setStatus(OrderStatus status) {
@@ -74,7 +112,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "id=" + id +
+                "id=" + orderId +
                 ", timestamp=" + timestamp +
                 ", cost=" + cost +
                 ", customerName='" + customerName + '\'' +

@@ -1,4 +1,4 @@
-package com.foodorderapplicationbackend;
+package com.foodorderapplicationbackend.Address;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

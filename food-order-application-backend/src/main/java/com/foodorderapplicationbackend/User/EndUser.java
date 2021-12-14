@@ -1,6 +1,6 @@
 package com.foodorderapplicationbackend.User;
 
-import com.foodorderapplicationbackend.Address;
+import com.foodorderapplicationbackend.Address.Address;
 
 import javax.persistence.*;
 import java.util.List;
@@ -26,7 +26,7 @@ public class EndUser {
             generator = "end_user_sequence"
     )
     @Column(
-            name = "id",
+            name = "userId",
             updatable = false
     )
     private Long id;

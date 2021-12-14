@@ -11,9 +11,9 @@ public class MealService {
 
     public List<Meal> getMeals() {
         return List.of(
-                new Meal(1,12.5,"meatball pasta","lovely spaghetti and meatballs"),
-                new Meal(2,25.0,"extra large pizza","pizza with cheese and sauce"),
-                new Meal(3,32.29,"lasagna","nice lasagna with meat")
+                new Meal(1L,12.5,"meatball pasta","lovely spaghetti and meatballs"),
+                new Meal(2L,25.0,"extra large pizza","pizza with cheese and sauce"),
+                new Meal(3L,32.29,"lasagna","nice lasagna with meat")
         );
     }
 
