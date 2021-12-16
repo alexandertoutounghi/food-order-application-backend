@@ -17,8 +17,8 @@ import java.util.List;
 public class EndUser {
     @Id
     @SequenceGenerator(
-            name = "end_user_sequence",
-            sequenceName = "end_user_sequence",
+            name = "end-user-sequence",
+            sequenceName = "end-user-sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -27,9 +27,10 @@ public class EndUser {
     )
     @Column(
             name = "userId",
-            updatable = false
+            updatable = false,
+            nullable = false
     )
-    private Long id;
+    private Long userId;
     @Column(
             name = "firstName",
             updatable = true,
@@ -65,27 +66,29 @@ public class EndUser {
     public EndUser() {
     }
 
-    public EndUser(Long id, String firstName, String lastName, String password, String email) {
-        this.id = id;
+    public EndUser(Long userId, String firstName, String lastName, String password, String email, List<Address> address) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.address = address;
     }
 
-    public EndUser(String firstName, String lastName, String password, String email) {
+    public EndUser(String firstName, String lastName, String password, String email, List<Address> address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
+        this.address = address;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -118,5 +121,13 @@ public class EndUser {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
 }

@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name="menu")
-@IdClass(MenuId.class)
 public class Menu {
     @Id
     private Long menuId;

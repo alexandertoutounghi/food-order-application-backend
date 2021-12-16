@@ -5,11 +5,9 @@ import java.io.Serializable;
 
 
 public class MenuId implements Serializable {
-   private Long menuId;
-   private Long mealID;
+   private Long mealId;
 
-   public MenuId(Long menuId, Long mealID) {
-      this.menuId = menuId;
-      this.mealID = mealID;
+   public MenuId(Long mealId) {
+      this.mealId = mealId;
    }
 }

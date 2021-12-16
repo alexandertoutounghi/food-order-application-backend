@@ -1,5 +1,7 @@
 package com.foodorderapplicationbackend.Meal;
 
+import com.foodorderapplicationbackend.Address.AddressId;
+import com.foodorderapplicationbackend.Menu.MenuId;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
@@ -7,21 +9,28 @@ import java.time.LocalDate;
 @Controller
 @Entity(name="Meal")
 @Table(name="Meal")
+@IdClass(MenuId.class)
 public class Meal {
     @Id
-    private Long mealId;
     @SequenceGenerator(
-            name="meal-sequence-unique",
-            sequenceName = "end-user-sequence",
+            name="meal-sequence",
+            sequenceName = "meal-sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "end-user-sequence"
+            generator = "meal-sequence"
     )
     @Column(
             name="mealId",
-            updatable = false
+            updatable = false,
+            nullable = false
+    )
+    private Long mealId;
+    @Id
+    private Long menuId;
+    @Column(
+            nullable = false
     )
     private double cost;
     @Column(

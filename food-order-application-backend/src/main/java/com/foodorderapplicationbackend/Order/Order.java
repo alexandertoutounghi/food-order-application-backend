@@ -4,12 +4,22 @@ import com.foodorderapplicationbackend.Meal.Meal;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity(name = "Order")
 @Table
 public class Order {
     @Id
+    @SequenceGenerator(
+            name="order-sequence",
+            sequenceName = "order-sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "order-sequence"
+    )
     @Column (
             name = "orderId",
             updatable = false,
@@ -23,7 +33,7 @@ public class Order {
             insertable = false
     )
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDate timestamp;
+    private Date timestamp;
 
     @Column (
             name="cost",
@@ -40,12 +50,14 @@ public class Order {
     @OneToMany
     private List<Meal> details;
 
+    @Column(name = "RIGHT")
+    @Enumerated(EnumType.ORDINAL)
     private OrderStatus status;
 
     public Order() {
     }
 
-    public Order(long orderId, LocalDate timestamp, Long cost, String customerName, List<Meal> details, OrderStatus status) {
+    public Order(long orderId, Date timestamp, Long cost, String customerName, List<Meal> details, OrderStatus status) {
         this.orderId = orderId;
         this.timestamp = timestamp;
         this.cost = cost;
@@ -54,12 +66,12 @@ public class Order {
         this.status = status;
     }
 
-    public Order(Long cost, String customerName, OrderStatus status) {
+    public Order(Long cost, String customerName, List<Meal> details, OrderStatus status) {
         this.cost = cost;
         this.customerName = customerName;
+        this.details = details;
         this.status = status;
     }
-
 
     public long getOrderId() {
         return orderId;
@@ -69,11 +81,11 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public LocalDate getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
