@@ -17,8 +17,8 @@ import java.util.List;
 public class EndUser {
     @Id
     @SequenceGenerator(
-            name = "end-user-sequence",
-            sequenceName = "end-user-sequence",
+            name = "end_user_sequence",
+            sequenceName = "end_user_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
@@ -81,6 +81,13 @@ public class EndUser {
         this.password = password;
         this.email = email;
         this.address = address;
+    }
+
+    public EndUser(String firstName, String lastName, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.email = email;
     }
 
     public Long getUserId() {
