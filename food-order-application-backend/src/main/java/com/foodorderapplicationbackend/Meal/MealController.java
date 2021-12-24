@@ -18,12 +18,7 @@ public class MealController {
     }
 
     @GetMapping
-    public List<Meal> getMeals() {
+    public List<MealEntity> getMeals() {
         return mealService.getMeals();
-
     }
-
-
-
-
 }

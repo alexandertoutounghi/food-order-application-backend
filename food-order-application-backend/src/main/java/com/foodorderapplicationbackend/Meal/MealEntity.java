@@ -1,16 +1,23 @@
 package com.foodorderapplicationbackend.Meal;
 
-import com.foodorderapplicationbackend.Address.AddressId;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import com.foodorderapplicationbackend.Menu.MenuId;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.stereotype.Controller;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+
 @Controller
 @Entity(name="Meal")
 @Table(name="Meal")
+@AllArgsConstructor
+@NoArgsConstructor
+//@Builder
 @IdClass(MenuId.class)
-public class Meal {
+public class MealEntity {
     @Id
     @SequenceGenerator(
             name="meal-sequence",
@@ -44,17 +51,15 @@ public class Meal {
     )
     private String details;
 
-    public Meal() {
-    }
 
-    public Meal(Long mealId, double cost, String title, String details) {
+    public MealEntity(Long mealId, double cost, String title, String details) {
         this.mealId = mealId;
         this.cost = cost;
         this.title = title;
         this.details = details;
     }
 
-    public Meal(double cost, String title, String details) {
+    public MealEntity(double cost, String title, String details) {
         this.cost = cost;
         this.title = title;
         this.details = details;

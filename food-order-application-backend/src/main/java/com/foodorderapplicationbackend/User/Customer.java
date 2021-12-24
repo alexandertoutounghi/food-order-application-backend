@@ -1,5 +1,7 @@
 package com.foodorderapplicationbackend.User;
 
-public class Customer extends EndUser {
+import com.foodorderapplicationbackend.User.EndUser.EndUserEntity;
+
+public class Customer extends EndUserEntity {
 
 }

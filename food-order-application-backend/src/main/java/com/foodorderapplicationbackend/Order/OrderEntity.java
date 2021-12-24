@@ -1,15 +1,14 @@
 package com.foodorderapplicationbackend.Order;
 
-import com.foodorderapplicationbackend.Meal.Meal;
+import com.foodorderapplicationbackend.Meal.MealEntity;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Entity(name = "Order")
 @Table
-public class Order {
+public class OrderEntity {
     @Id
     @SequenceGenerator(
             name="order-sequence",
@@ -48,16 +47,20 @@ public class Order {
     )
     private String customerName;
     @OneToMany
-    private List<Meal> details;
+    @JoinTable(
+            name = "details",
+            joinColumns = @JoinColumn
+    )
+    private List<MealEntity> details;
 
     @Column(name = "RIGHT")
     @Enumerated(EnumType.ORDINAL)
     private OrderStatus status;
 
-    public Order() {
+    public OrderEntity() {
     }
 
-    public Order(long orderId, Date timestamp, Long cost, String customerName, List<Meal> details, OrderStatus status) {
+    public OrderEntity(long orderId, Date timestamp, Long cost, String customerName, List<MealEntity> details, OrderStatus status) {
         this.orderId = orderId;
         this.timestamp = timestamp;
         this.cost = cost;
@@ -66,7 +69,7 @@ public class Order {
         this.status = status;
     }
 
-    public Order(Long cost, String customerName, List<Meal> details, OrderStatus status) {
+    public OrderEntity(Long cost, String customerName, List<MealEntity> details, OrderStatus status) {
         this.cost = cost;
         this.customerName = customerName;
         this.details = details;
@@ -105,11 +108,11 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public List<Meal> getDetails() {
+    public List<MealEntity> getDetails() {
         return details;
     }
 
-    public void setDetails(List<Meal> details) {
+    public void setDetails(List<MealEntity> details) {
         this.details = details;
     }
 

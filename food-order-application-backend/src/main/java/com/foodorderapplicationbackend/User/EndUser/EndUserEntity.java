@@ -1,6 +1,10 @@
-package com.foodorderapplicationbackend.User;
+package com.foodorderapplicationbackend.User.EndUser;
 
-import com.foodorderapplicationbackend.Address.Address;
+import com.foodorderapplicationbackend.Address.AddressEntity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,7 +18,11 @@ import java.util.List;
                 )
         }
 )
-public class EndUser {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
+public class EndUserEntity {
     @Id
     @SequenceGenerator(
             name = "end_user_sequence",
@@ -60,14 +68,13 @@ public class EndUser {
             unique = true
     )
     private String email;
-    @ManyToMany
-    private List<Address> address;
 
-    public EndUser() {
-    }
+    @Embedded
+    private AddressEntity address;
+//    @ManyToMany
+//    private List<AddressEntity> addressEntities;
 
-    public EndUser(Long userId, String firstName, String lastName, String password, String email, List<Address> address) {
-        this.userId = userId;
+    public EndUserEntity(String firstName, String lastName, String password, String email, AddressEntity address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -75,15 +82,7 @@ public class EndUser {
         this.address = address;
     }
 
-    public EndUser(String firstName, String lastName, String password, String email, List<Address> address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.password = password;
-        this.email = email;
-        this.address = address;
-    }
-
-    public EndUser(String firstName, String lastName, String password, String email) {
+    public EndUserEntity(String firstName, String lastName, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -130,11 +129,20 @@ public class EndUser {
         this.email = email;
     }
 
-    public List<Address> getAddress() {
+//    public List<AddressEntity> getAddress() {
+//        return addressEntities;
+//    }
+
+//    public void setAddress(List<AddressEntity> addressEntities) {
+//        this.addressEntities = addressEntities;
+//    }
+
+
+    public AddressEntity getAddress() {
         return address;
     }
 
-    public void setAddress(List<Address> address) {
+    public void setAddress(AddressEntity address) {
         this.address = address;
     }
 }
