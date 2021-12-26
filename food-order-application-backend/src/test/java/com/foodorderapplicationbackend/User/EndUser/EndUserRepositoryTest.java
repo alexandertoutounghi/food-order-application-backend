@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,5 +87,27 @@ class EndUserRepositoryTest {
         EndUserEntity endUserEntity = endUserRepository.findByEmailAddress("maria.sharpanova@videontron.ca");
         System.out.println(endUserEntity);
     }
+    @Test
+    public void printFirstNameByEmailAddress() {
+        String endUserFirstName = endUserRepository.findStudentFirstnameByEmailAddress("maria.sharpanova@videontron.ca");
+        System.out.println(endUserFirstName);
+    }
+    @Test
+    public void getStudentByEmailAddressNative() {
+        EndUserEntity endUserEntity = endUserRepository.getStudentByEmailAddressNative("maria.sharpanova@videontron.ca");
+        System.out.println(endUserEntity);
+    }
+
+    /**
+     * Just adding named param
+     */
+    @Test
+    public void getStudentByEmailAddressNativeNamedParam() {
+        EndUserEntity endUserEntity = endUserRepository.getStudentByEmailAddressNative("maria.sharpanova@videontron.ca");
+        System.out.println(endUserEntity);
+    }
+
+
+
 
 }
