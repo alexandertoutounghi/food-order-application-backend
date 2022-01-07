@@ -1,10 +1,7 @@
 package com.foodorderapplicationbackend.Meal;
 
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.foodorderapplicationbackend.Menu.MenuId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import org.springframework.stereotype.Controller;
 import lombok.NoArgsConstructor;
 
@@ -15,18 +12,18 @@ import javax.persistence.*;
 @Table(name="Meal")
 @AllArgsConstructor
 @NoArgsConstructor
-//@Builder
-@IdClass(MenuId.class)
+@Builder
+//@IdClass(MenuId.class)
 public class MealEntity {
     @Id
     @SequenceGenerator(
-            name="meal-sequence",
-            sequenceName = "meal-sequence",
+            name="meal_sequence",
+            sequenceName = "meal_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "meal-sequence"
+            generator = "meal_sequence"
     )
     @Column(
             name="mealId",
@@ -34,10 +31,11 @@ public class MealEntity {
             nullable = false
     )
     private Long mealId;
-    @Id
-    private Long menuId;
+//    @Id
+//    private Long menuId;
     @Column(
-            nullable = false
+            nullable = false,
+            columnDefinition="Decimal(10,2)"
     )
     private double cost;
     @Column(
@@ -51,19 +49,16 @@ public class MealEntity {
     )
     private String details;
 
+//    @ManyToOne
+//    private MealEntity menu;
 
-    public MealEntity(Long mealId, double cost, String title, String details) {
-        this.mealId = mealId;
-        this.cost = cost;
-        this.title = title;
-        this.details = details;
-    }
 
     public MealEntity(double cost, String title, String details) {
         this.cost = cost;
         this.title = title;
         this.details = details;
     }
+
 
     public Long getMealId() {
         return mealId;

@@ -1,8 +1,11 @@
 package com.foodorderapplicationbackend;
 
 import com.foodorderapplicationbackend.Address.AddressEntity;
+import com.foodorderapplicationbackend.Menu.MenuEntity;
+import com.foodorderapplicationbackend.Menu.MenuRepository;
 import com.foodorderapplicationbackend.User.EndUser.EndUserEntity;
 import com.foodorderapplicationbackend.User.EndUser.EndUserRepository;
+import com.foodorderapplicationbackend.User.Vendor.Vendor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +19,8 @@ public class FoodOrderApplicationBackendApplication {
 
 	}
 	@Bean
-	CommandLineRunner commandLineRunner(EndUserRepository endUserRepository) {
+	CommandLineRunner commandLineRunner(EndUserRepository endUserRepository,
+										MenuRepository menuRepository) {
 		return args -> {
 			AddressEntity addressEntity= AddressEntity.builder()
 					.addressNumber("4534")
@@ -33,6 +37,17 @@ public class FoodOrderApplicationBackendApplication {
 					.build();
 
 			endUserRepository.save(maria);
+
+			Vendor vendorEntity = Vendor.builder()
+					.bizAddress("111 drury lane")
+					.businessName("Andoli's Pizza")
+					.build();
+			MenuEntity menuEntity =
+					MenuEntity.builder()
+							.menuName("Wine Menu")
+							.vendor(vendorEntity)
+							.build();
+			menuRepository.save(menuEntity);
 		};
 
 	}

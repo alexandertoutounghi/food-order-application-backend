@@ -107,6 +107,12 @@ class EndUserRepositoryTest {
         System.out.println(endUserEntity);
     }
 
+    @Test
+    public void modifyStudentFirstNameParam() {
+        int responseCode = endUserRepository.updateStudentNameByEmailId("katya","maria.sharpanova@videontron.ca");
+        System.out.println(responseCode==1?"Success":"Failure");
+    }
+
 
 
 

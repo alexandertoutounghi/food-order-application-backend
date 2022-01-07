@@ -1,7 +1,9 @@
-package com.foodorderapplicationbackend.Repository;
+package com.foodorderapplicationbackend.Menu;
 
-import com.foodorderapplicationbackend.Menu.MenuEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MenuRepository extends JpaRepository<MenuEntity,Long> {
+
 }
