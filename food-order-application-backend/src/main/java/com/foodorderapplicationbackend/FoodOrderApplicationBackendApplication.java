@@ -32,7 +32,7 @@ public class FoodOrderApplicationBackendApplication {
 					.firstName("maria")
 					.lastName("sharpanova")
 					.password("password")
-					.email("maria.sharpanova@videontron.ca")
+					.email("maria.sharpanova@videotron.ca")
 					.address(addressEntity)
 					.build();
 

@@ -55,14 +55,15 @@ public class Vendor  {
    )
    private MenuEntity menu;
 
-//   public Vendor(String businessName, String bizAddress, MenuEntity menu) {
-//      this.businessName = businessName;
-//      this.bizAddress = bizAddress;
-//      this.menu = menu;
-//   }
-//
-//   public Vendor(String businessName, String bizAddress) {
-//      this.businessName = businessName;
-//      this.bizAddress = bizAddress;
-//   }
+
+   public Vendor(String businessName, String bizAddress, MenuEntity menu) {
+      this.businessName = businessName;
+      this.bizAddress = bizAddress;
+      this.menu = menu;
+   }
+
+   public Vendor(String businessName, String bizAddress) {
+      this.businessName = businessName;
+      this.bizAddress = bizAddress;
+   }
 }

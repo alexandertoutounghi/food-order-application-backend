@@ -30,7 +30,7 @@ class MenuRepositoryTest {
         MenuEntity menuEntity =
                 MenuEntity.builder()
                         .menuName("Wine Menu")
-//                        .vendor(vendorEntity)
+                        .vendor(vendorEntity)
                         .build();
         menuRepository.save(menuEntity);
     }
